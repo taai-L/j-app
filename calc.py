@@ -1,7 +1,7 @@
 import math
 class calci(object):
 
-    def add(self,num1,num2):
+    #def add(self,num1,num2):
         answer = num1 + num2
         print('Sum = ',answer)
     def sub(self,num1,num2):
