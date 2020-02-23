@@ -1,19 +1,23 @@
 #!groovy
+// Run docker build
 properties([disableConcurrentBuilds()])
 
 pipeline {
-    agent {
+    agent { 
         label 'master'
-    }
+        }
+    triggers { pollSCM('* * * * *') }
     options {
-        buildDiscarber(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
         timestamps()
     }
-    stages ("create docker image") {
-        steps {
-            echo "========== start building image =========="
-            dir ('docker') {
-                sh 'docker build .'
+    stages {
+        stage("create docker image") {
+            steps {
+                echo " ============== start building image =================="
+                dir ('docker/toolbox') {
+                	sh 'docker build -t semaev/toolbox:latest . '
+                }
             }
         }
     }
