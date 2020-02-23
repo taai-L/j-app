@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push 0686519782/toolbox:1.0.$BUILD_NUMBER
+                docker push 0686519782/toolbox:latest
                 '''
             }
         }
