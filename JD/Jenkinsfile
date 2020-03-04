@@ -32,7 +32,7 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                dir ('JD/docker/toolbox') {
+                dir ('docker/toolbox') {
                 	sh 'docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . '
                 }
             }
