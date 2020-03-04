@@ -15,8 +15,7 @@ pipeline {
             steps {
                 echo " ============== git clone =================="
                 sh """
-                cd /var/lib/jenkins/dokapa/git
-                git clone git@github.com:taai-L/j-app.git
+                cd /var/lib/jenkins/dokapa/git && git clone git@github.com:taai-L/j-app.git
                 """
                 }
             }
