@@ -1,5 +1,4 @@
-FROM alpine
-RUN apk add --no-cache curl wget busybox-extras netcat-openbsd python py-pip
-RUN pip install awscli
-RUN apk --purge -v del py-pip
-CMD tail -f /dev/null
+FROM nginx
+RUN rm -fR /usr/share/nginx/html
+COPY ./git/app-for-add/html/ /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
