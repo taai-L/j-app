@@ -20,8 +20,6 @@ pipeline {
                 """
                 }
             }
-        }
-    stages {
         stage("docker login") {
             steps {
                 echo " ============== docker login =================="
@@ -31,7 +29,6 @@ pipeline {
                     """
                 }
             }
-        }
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
