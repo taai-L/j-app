@@ -43,7 +43,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push 0686519782/test-container:1.0.$BUILD_NUMBER
+                docker push 0686519782/nginx-test:1.0.$BUILD_NUMBER
                 '''
             }
         }
