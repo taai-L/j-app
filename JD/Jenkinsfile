@@ -8,9 +8,20 @@ pipeline {
         }
     #triggers { pollSCM('* * * * *') }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
         timestamps()
     }
+    stages {
+        stage("git clone") {
+            steps {
+                echo " ============== git clone =================="
+                sh """
+                cd /var/lib/jenkins/dokapa/git
+                git clone git@github.com:taai-L/app-for-add.git
+                """
+                }
+            }
+        }
     stages {
         stage("docker login") {
             steps {
@@ -26,7 +37,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('JD/docker/toolbox') {
-                	sh 'docker build -t 0686519782/test-container:1.0.$BUILD_NUMBER . '
+                	sh 'docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . '
                 }
             }
         }
