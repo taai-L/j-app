@@ -13,21 +13,19 @@ pipeline {
     stages {
         stage("git clone") {
             steps {
-                echo " ============== git clone =================="
-                sh """
+                echo " ==================== git clone ===================="
+                sh '''
                 cd /var/lib/jenkins/git
                 rm -rf j-app/
                 git clone git@github.com:taai-L/j-app.git
-                """
+                '''
                 }
             }
         stage("docker login") {
             steps {
-                echo " ============== docker login =================="
+                echo " =================== docker login ==================="
                 withCredentials([usernamePassword(credentialsId: 'dockerhub_own', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh """
-                    docker login -u $USERNAME -p $PASSWORD
-                    """
+                    sh 'docker login -u $USERNAME -p $PASSWORD'
                 }
             }
         }
@@ -35,16 +33,17 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('html/') {
-                	sh 'docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . '
+                	sh '''
+                    cd /var/lib/jenkins/git/j-app/html
+                    docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
+                    '''
                 }
             }
         }
         stage("docker push") {
             steps {
                 echo " ============== start pushing image =================="
-                sh '''
-                docker push 0686519782/nginx-test:1.0.$BUILD_NUMBER
-                '''
+                sh 'docker push 0686519782/nginx-test:1.0.$BUILD_NUMBER'
             }
         }
     }
