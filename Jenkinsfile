@@ -32,9 +32,9 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                dir ('html/') {
+                {
                 	sh '''
-                    cd /var/lib/jenkins/git/j-app/html
+                    cd /var/lib/jenkins/git/j-app/cont/
                     docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
                     '''
                 }
