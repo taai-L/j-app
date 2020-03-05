@@ -48,7 +48,7 @@ pipeline {
             steps {
                 echo " ================== start deploying =================="
                 sh '''
-                ansible-playbook /home/ubuntu/docker_install.yml staging_servers
+                ansible-playbook /home/ubuntu/docker_install.yml -l staging_servers
                 ansible staging_servers -m shell -a "docker pull 0686519782/nginx-test:1.0.$BUILD_NUMBER"
                 ansible staging_servers -m shell -a "sh kill.sh"
                 ansible staging_servers -m shell -a "sh docker_rm.sh"
