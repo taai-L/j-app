@@ -21,14 +21,6 @@ pipeline {
                 '''
                 }
             }
-        stage("docker login") {
-            steps {
-                echo " =================== docker login ==================="
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_own', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'docker login -u $USERNAME -p $PASSWORD'
-                }
-            }
-        }
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
@@ -36,6 +28,14 @@ pipeline {
                     cd /var/lib/jenkins/git/j-app/cont/
                     docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
                     '''
+            }
+        }
+        stage("docker login") {
+            steps {
+                echo " =================== docker login ==================="
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_own', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'docker login -u $USERNAME -p $PASSWORD'
+                }
             }
         }
         stage("docker push") {
