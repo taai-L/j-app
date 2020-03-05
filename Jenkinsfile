@@ -44,9 +44,9 @@ pipeline {
                 sh 'docker push 0686519782/nginx-test:1.0.$BUILD_NUMBER'
             }
         }
-        stage("deploy using ansible") {
+        stage("deploy") {
             steps {
-                echo " ================== start pull image =================="
+                echo " ================== start deploying =================="
                 sh '''
                 ansible staging_servers -m shell -a "docker pull 0686519782/nginx-test:1.0.$BUILD_NUMBER"
                 ansible staging_servers -m shell -a "sh kill.sh"
