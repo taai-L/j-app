@@ -23,7 +23,7 @@ pipeline {
             }
         stage("create docker image") {
             steps {
-                echo " ============== start building image =================="
+                echo " ================ start building image ================="
                 	sh '''
                     cd /home/ubuntu/git/j-app/cont/
                     docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
