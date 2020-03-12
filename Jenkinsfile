@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage("git clone") {
             steps {
-                echo " ==================== git clone ===================="
+                echo " ===================== git clone ====================="
                 sh '''
                 cd /home/ubuntu/git
                 rm -rf j-app/
