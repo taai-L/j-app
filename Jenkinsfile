@@ -50,7 +50,6 @@ pipeline {
                 sh '''
                 eval `ssh-agent -s`
                 ssh-agent $BASH
-                ssh-add -l
                 ssh-add ~/.ssh/A2.pem
                 ssh-add -l
                 ssh -t ubuntu@174.129.60.93 "docker pull 0686519782/nginx-test:1.0.$BUILD_NUMBER"
