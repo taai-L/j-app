@@ -4,7 +4,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     agent { 
-        label 'master'
+        label 'ubuntu'
         }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo " ===================== git clone ====================="
                 sh '''
-                cd /var/lib/jenkins/git
+                cd /home/ubuntu/git
                 rm -rf j-app/
                 git clone git@github.com:taai-L/j-app.git
                 '''
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo " ================ start building image ================="
                 	sh '''
-                    cd /var/lib/jenkins/git/j-app/cont/
+                    cd /home/ubuntu/git/j-app/cont/
                     docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
                     '''
             }
