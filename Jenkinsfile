@@ -40,11 +40,6 @@ pipeline {
                 ssh-add ~/.ssh/A2.pem
                 ssh ubuntu@174.129.60.93 "sh kill.sh; sh docker_rm.sh; \
                 docker run -d --name nginx-t -p 8090:80 0686519782/nginx-test:1.0.$BUILD_NUMBER"
-                echo $BUILD_NUMBER > bn_own-pp
-                echo HAHAHAHAHAHAHAHAHA
-                echo ${own-pp}-${BUILD_NUMBER}
-                echo HAHAHAHAHAHAHAHAHA
-                echo ${own-pp//[^0-9]/}-${BUILD_NUMBER}
                 '''
             }
         }
