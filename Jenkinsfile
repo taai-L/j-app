@@ -48,7 +48,8 @@ pipeline {
             steps {
                 echo " ================== start deploying =================="
                 sh '''
-                logout
+                exit
+                exit
                 eval `ssh-agent -s`
                 ssh-agent $BASH
                 ssh-add ~/.ssh/A2.pem
