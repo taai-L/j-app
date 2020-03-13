@@ -11,21 +11,11 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("git clone") {
-            steps {
-                echo " ===================== git clone ====================="
-                sh '''
-                cd /home/ubuntu/git
-                rm -rf j-app/
-                git clone git@github.com:taai-L/j-app.git
-                '''
-                }
-            }
         stage("create docker image") {
             steps {
                 echo " ================ start building image ================="
                 	sh '''
-                    cd /home/ubuntu/git/j-app/cont/
+                    cd /home/ubuntu/jenkins/workspace/own-pp/cont/
                     docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
                     '''
             }
