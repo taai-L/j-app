@@ -20,7 +20,7 @@ pipeline {
                     '''
             }
         }
-        stage("docker login") {
+        stage("docker login && push") {
             steps {
                 echo " ============== docker login && push ==============="
                 withCredentials([usernamePassword(credentialsId: 'dockerhub_own', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
