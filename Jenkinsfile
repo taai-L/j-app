@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo " ===================== git clone ====================="
                 sh '''
-                cd /home/ubuntu/git
+                cd /var/lib/jenkins/git
                 rm -rf j-app/
                 git clone git@github.com:taai-L/j-app.git
                 '''
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo " ================ start building image ================="
                 	sh '''
-                    cd /home/ubuntu/git/j-app/cont/
+                    cd /var/lib/jenkins/git/j-app/cont/
                     docker build -t 0686519782/nginx-test:1.0.$BUILD_NUMBER . 
                     '''
             }
