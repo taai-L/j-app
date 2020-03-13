@@ -43,7 +43,6 @@ pipeline {
                 echo $BUILD_NUMBER > bn_own-pp
                 echo HAHAHAHAHAHAHAHAHA
                 echo ${own-pp}-${BUILD_NUMBER}
-                string="${own-pp}-${BUILD_NUMBER}"; echo ${string//[^0-9]/}
                 '''
             }
         }
