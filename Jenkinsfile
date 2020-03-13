@@ -48,7 +48,7 @@ pipeline {
             steps {
                 echo " ================== start deploying =================="
                 sh '''
-                ssh-agent $BASH
+                sudo ssh-agent $BASH
                 ssh-add ~/.ssh/A2.pem
                 ssh ubuntu@174.129.60.93
                 docker pull 0686519782/nginx-test:1.0.$BUILD_NUMBER
