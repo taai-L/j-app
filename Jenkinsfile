@@ -48,6 +48,7 @@ pipeline {
             steps {
                 echo " ================== start deploying =================="
                 sh '''
+                eval `ssh-agent -s`
                 ssh-agent $BASH
                 ssh-add ~/.ssh/A2.pem
                 ssh ubuntu@174.129.60.93 "sh kill.sh; sh docker_rm.sh; \
