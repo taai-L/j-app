@@ -48,10 +48,6 @@ pipeline {
             steps {
                 echo " ================== start deploying =================="
                 sh '''
-                eval `ssh-agent -s`
-                ssh-agent $BASH
-                ssh-add ~/.ssh/A2.pem
-                ssh-add -l
                 ssh ubuntu@174.129.60.93 "sh kill.sh; sh docker_rm.sh; \
                 docker run -d --name nginx-t -p 8090:80 0686519782/nginx-test:1.0.$BUILD_NUMBER"
                 '''
