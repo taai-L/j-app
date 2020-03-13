@@ -54,7 +54,7 @@ pipeline {
                 ssh-add -l
                 ssh -tt ubuntu@174.129.60.93 "docker pull 0686519782/nginx-test:1.0.$BUILD_NUMBER"
                 ssh -tt ubuntu@174.129.60.93 "curl ifconfig.me"
-                ssh -tt ubuntu@174.129.60.93 "docker kill $(docker ps -q)"
+                ssh -tt ubuntu@174.129.60.93 "sh kill.sh"
                 ssh -tt ubuntu@174.129.60.93 "docker rm $(docker ps -qa)"
                 ssh -tt ubuntu@174.129.60.93 "docker run -d --name nginx-t -p 8090:80 0686519782/nginx-test:1.0.$BUILD_NUMBER"
                 '''
