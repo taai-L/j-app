@@ -1,0 +1,27 @@
+#!groovy
+// Run docker build
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent { 
+        label 'ubuntu'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+        timestamps()
+    }
+    stages {
+        stage("rollback") {
+            steps {
+                echo " ================== start rollback =================="
+                sh '''
+                eval `ssh-agent -s`
+                ssh-agent $BASH
+                ssh-add ~/.ssh/A2.pem
+                ssh ubuntu@174.129.60.93 "sh kill.sh; sh docker_rm.sh; \
+                docker run -d --name nginx-t -p 8090:80 0686519782/nginx-test:1.0.99"
+                '''
+            }
+        }
+    }
+}
